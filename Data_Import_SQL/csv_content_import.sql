@@ -1,4 +1,4 @@
-/*uncomment xampp > php > php.ini, line 1159, mysqli.allow_local_infile = On*/
+/*put USvideos.csv to C:\xampp\mysql\data\youtube_db*/
 USE youtube_db;
 
 create table db(
