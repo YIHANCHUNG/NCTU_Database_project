@@ -10,3 +10,6 @@ CHARACTER SET latin1
 fields terminated by ','
 enclosed by '"'
 lines terminated by '\n';
+
+ALTER TABLE detail
+ADD FOREIGN KEY (category_id) REFERENCE category(category_id);
