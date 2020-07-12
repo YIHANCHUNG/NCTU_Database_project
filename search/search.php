@@ -74,8 +74,9 @@
 				echo $row['publish_time']." ";
 				echo $row['trending_date']." ";
 				echo $row['views']." ";
-                echo $row['likes']." ";
-				echo $row['dislikes']."<br>";
+                                echo $row['likes']." ";
+				echo $row['dislikes']." ";
+				echo <a href="https://www.youtube.com/watch?v=$row['video_id']" target="_blank">access video</a><br>
 			}
 		}
 		else
