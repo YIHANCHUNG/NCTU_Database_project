@@ -79,8 +79,7 @@
 				echo $row['views']." ";
                 echo $row['likes']." ";
 				echo $row['dislikes']." ";
-				$addr = $row['video_id'];
-				echo "<a href=https://www.youtube.com/watch?v=$addr target='_blank'>access video</a><br>";
+				echo "<a href='https://www.youtube.com/watch?v=".$row['video_id']."' target='_blank'>access video</a><br>";
 			}
 		}
 		else
