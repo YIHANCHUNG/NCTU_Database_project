@@ -13,7 +13,6 @@ create table basic(
 );
 
 
-
 create table detail(
 
     video_id char(11) NOT NULL,
@@ -72,7 +71,7 @@ create table property(
 
 
 
--- basic;
+/* basic; */
 
 insert into basic (video_id,title,channel_title,publish_time)
 
@@ -88,7 +87,7 @@ where db.video_id = sel.video_id AND db.views = sel.max_views;
 
 
 
---detail;
+/* detail; */
 
 insert into detail (video_id,category_id,tags,thumbnail_link,description)
 
@@ -104,7 +103,7 @@ where db.video_id = sel.video_id AND db.views = sel.max_views;
 
 
 
---property;
+/* property; */
 
 insert into property(video_id,comments_disabled,ratings_disabled,video_error_or_removed)
 
@@ -120,7 +119,7 @@ where db.video_id = sel.video_id AND db.views = sel.max_views;
 
 
 
---statistic;
+/* statistic */
 
 insert into statistic (video_id,trending_date,views,likes,dislikes,comment_count)
 

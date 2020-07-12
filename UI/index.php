@@ -1,25 +1,7 @@
 <?php
   include 'header.php'
 ?>
-<!--
-<html lang="en">
-<title>DB_final project</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
-.w3-sidebar {
-  z-index: 3;
-  width: 250px;
-  top: 43px;
-  bottom: 0;
-  height: inherit;
-}
-</style>-->
+
 <body>
 
 <!-- Navbar -->
@@ -58,10 +40,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-teal">About This Website</h1>
       <p>This is a website with <a href="https://www.kaggle.com/datasnaek/youtube-new" target="_blank">youtube dataset</a>
-      , including treading youtube videos and their properties.
+      , including treading youtube videos in 2018 and their properties.
       <br>The feature available currently is <b>search</b>.
-      <br>The group members are 劉裕源、巫奇翰、鍾易翰、韓明洋.
-      <br>visit our <a href="https://github.com/YIHANCHUNG/NCTU_Database_project" target="_blank">github</a></p>
+      <br>The group members are 0716301劉裕源、0716059巫奇翰、0716005鍾易翰、0716113韓明洋.
+      <br>Visit our <a href="https://github.com/YIHANCHUNG/NCTU_Database_project" target="_blank">github.</a></p>
     </div>
     <!--<div class="w3-third w3-container">
       <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>

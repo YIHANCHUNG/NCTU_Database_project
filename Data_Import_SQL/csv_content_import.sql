@@ -1,3 +1,6 @@
+/*uncomment xampp > php > php.ini, line 1159, mysqli.allow_local_infile = On*/
+USE youtube_db;
+
 create table db(
 
     video_id char(11) NOT NULL,
@@ -36,7 +39,7 @@ create table db(
 
 
 
-load data local INFILE './USvideos.csv'
+load data INFILE 'USvideos.csv'
 
 into table db
 
