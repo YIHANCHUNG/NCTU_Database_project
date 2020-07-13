@@ -20,6 +20,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
+#reset {
+  color:#f44336;
+  background-color:#e7e7e7;
+  border: 1px solid #555555;
+}
+#reset:link{
+  text-decoration: none;
+}
+
 </style>
 <body><!--
 	<head>
