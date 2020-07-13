@@ -1,5 +1,6 @@
 <?php
   include 'header.php';
+  session_start();
   include './index_HAHA/HAHA_array.php';
 ?>
 
@@ -50,7 +51,7 @@
             <?php #include'./index_HAHA/HAHA_OK.php'; ?>
           </form>
           
-          <br><h4><a href='index_HAHA.php' id="reset">reset</a><h4>
+          <br><h4><a href='./index_HAHA/HAHA_destroy.php' id="reset">reset</a><h4>
       </div>
     </div>
   </body>
