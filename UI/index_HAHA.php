@@ -1,5 +1,6 @@
 <?php
-  include 'header.php'
+  include 'header.php';
+  include './index_HAHA/HAHA_array.php';
 ?>
 
 <html>
@@ -44,12 +45,12 @@
               <option value="44"> "Trailers" </option>
             </select>
             <!--<input name="submit" type="submit" value="Get Selected Values">-->
-            <br><br><input name="ok" type="submit" value="OK">
+            <br><br><input name="ok" type="submit" value="OK" style="font-size: 30px;">
             <?php #include'./index_HAHA/HAHA_select_value.php'; ?>
             <?php #include'./index_HAHA/HAHA_OK.php'; ?>
           </form>
           
-          <br><br><button onclick="location.href='index_HAHA.php'" style="color:red">reset</button>
+          <br><h4><a href='index_HAHA.php' id="reset">reset</a><h4>
       </div>
     </div>
   </body>
