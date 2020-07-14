@@ -1,4 +1,6 @@
 /*put USvideos.csv to C:\xampp\mysql\data\youtube_db*/
+CREATE DATABASE youtube_db;
+
 USE youtube_db;
 
 create table db(
