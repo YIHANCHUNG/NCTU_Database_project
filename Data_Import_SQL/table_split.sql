@@ -133,3 +133,5 @@ from db
 
 group by video_id,trending_date;
 
+
+DROP TABLE db;
