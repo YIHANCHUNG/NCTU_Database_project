@@ -27,13 +27,13 @@
                   <th>Thumbnail</th>
                   <th>Title</th>
                   <th>Channel</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>  </th>
+                  <th>&#x1F44D;</th>
+                  <th>&#x1F44E;</th>
+                  <th>&#x1F44C</th>
                 </tr>";
         $count = 1;
         $count2 = -1;
-        require_once './index_HAHA/HAHA_goodbad.php';
         // 3 relative videos
         while($row = mysqli_fetch_assoc($result)){
           $count++;
@@ -45,10 +45,11 @@
           echo "<th><a href='https://www.youtube.com/watch?v=".$row['video_id']."' target='_blank' style='color:blue;'>watch!</a></th>";
           //echo "<th><button id=".$count.$row['category_id']." style='border:2px solid white; outline:none' onclick='thumbup(".$count.$row['category_id'].")'>&#x1F44D;</button></th>";
           //echo "<th><button id=".$count2.$row['category_id']." style='border:2px solid white; outline:none' onclick='thumbdown(".$count2.$row['category_id'].")'>&#x1F44E;</button></th>";
-          echo "<th><input name='".$count."' type='submit' value='&#x1F44D;' class='goodbad' id=".$count.$row['category_id']." onclick=thumbup(".$count.$row['category_id'].")></th>";
-          echo "<th><input name='".$count2."' type='submit' value='&#x1F44E;' class='goodbad' id=".$count2.$row['category_id']." onclick=thumbdown(".$count2.$row['category_id'].")></th>";
-          echo "<script>document.getElementById(".$count.$row['category_id'].").style.borderColor='lightgray';</script>";
-          echo "<script>document.getElementById(".$count2.$row['category_id'].").style.borderColor='lightgray';</script>";
+          echo "<th><input name='".$count."' type='radio' value='good".$row['category_id']."' class='goodbad' id=".$count.$row['category_id']." onclick=thumbup(".$count.$row['category_id'].")></th>";
+          echo "<th><input name='".$count."' type='radio' value='bad".$row['category_id']."' class='goodbad' id=".$count2.$row['category_id']." onclick=thumbdown(".$count2.$row['category_id'].")></th>";
+          echo "<th><input name='".$count."' type='radio' value='soso' class='goodbad' checked></th>";
+          //echo "<script>document.getElementById(".$count.$row['category_id'].").style.borderColor='lightgray';</script>";
+          //echo "<script>document.getElementById(".$count2.$row['category_id'].").style.borderColor='lightgray';</script>";
         }
         // 2 irrelative videos
         $sql = "select b.video_id, b.title, b.channel_title, d.thumbnail_link, d.category_id
@@ -68,22 +69,28 @@
           echo "<th><a href='https://www.youtube.com/watch?v=".$row['video_id']."' target='_blank' style='color:blue;'>watch!</a></th>";
           //echo "<th><button id=".$count.$row['category_id']." style='border:2px solid white; outline:none' onclick='thumbup(".$count.$row['category_id'].")'>&#x1F44D;</button></th>";
           //echo "<th><button id=".$count2.$row['category_id']." style='border:2px solid white; outline:none' onclick='thumbdown(".$count2.$row['category_id'].")'>&#x1F44E;</button></th>";
-          echo "<th><input name='good' type='submit' value='&#x1F44D;' class='goodbad' id=".$count.$row['category_id']." onclick=thumbup(".$count.$row['category_id'].")></th>";
-          echo "<th><input name='bad' type='submit' value='&#x1F44E;' class='goodbad' id=".$count2.$row['category_id']." onclick=thumbdown(".$count2.$row['category_id'].")></th>";
-          echo "<script>document.getElementById(".$count.$row['category_id'].").style.borderColor='lightgray';</script>";
-          echo "<script>document.getElementById(".$count2.$row['category_id'].").style.borderColor='lightgray';</script>";
+          echo "<th><input name='".$count."' type='radio' value='good".$row['category_id']."' class='goodbad' id=".$count.$row['category_id']." onclick=thumbup(".$count.$row['category_id'].")></th>";
+          echo "<th><input name='".$count."' type='radio' value='bad".$row['category_id']."' class='goodbad' id=".$count2.$row['category_id']." onclick=thumbdown(".$count2.$row['category_id'].")></th>";
+          echo "<th><input name='".$count."' type='radio' value='soso' class='goodbad' checked></th>";
+          //echo "<script>document.getElementById(".$count.$row['category_id'].").style.borderColor='lightgray';</script>";
+          //echo "<script>document.getElementById(".$count2.$row['category_id'].").style.borderColor='lightgray';</script>";
           echo "</tr>";
         }
         echo "</table>";
-        arsort($_SESSION);
-        print_r($_SESSION);
       }
     }else{
       echo "GG <br>". $sql;
     }
     echo"<br>
     <input name='ok2' type='submit' value='Next' style='font-size: 30px;'>
-    </from>";
+    </from><br>";
+    
+    echo"<br><details><summary>How dose it works?</summary><p>Array below store the info of categories, 
+        <br>meaning that we recommend the videos depend on the maximum numbers of the categories you pick, 
+        <br>and notes that the last 2 recommendations are random, in case you have another interest.</p>";
+    arsort($_SESSION);
+    print_r($_SESSION);
+    echo"</details>";
   }
 ?>
 <script>

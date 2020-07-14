@@ -1,34 +1,14 @@
 <?php
-  $good_num = 0;
-  $bad_num = 0;
-  if(isset($_POST['2'])){
-    echo "<script>alert(2);</script>";
-  }
-  if(isset($_POST['3'])){
-    echo "<script>alert(3);</script>";
-  }
-  if(isset($_POST['4'])){
-    echo "<script>alert(4);</script>";
-  }
-  if(isset($_POST['5'])){
-    echo "<script>alert(5);</script>";
-  }
-  if(isset($_POST['6'])){
-    echo "<script>alert(6);</script>";
-  }
-  if(isset($_POST['-2'])){
-    echo "<script>alert(-2);</script>";
-  }
-  if(isset($_POST['-3'])){
-    echo "<script>alert(-3);</script>";
-  }
-  if(isset($_POST['-4'])){
-    echo "<script>alert(-4);</script>";
-  }
-  if(isset($_POST['-5'])){
-    echo "<script>alert(-5);</script>";
-  }
-  if(isset($_POST['-6'])){
-    echo "<script>alert(-6);</script>";
+  if(isset($_POST['ok2'])){
+    for ($i = 2; $i <=6; $i++){
+      if(substr($_POST[$i],0,4) == 'good'){
+        $_SESSION['s'.substr($_POST[$i],4,2)]++;
+        //echo '+: '.substr($_POST[$i],4,2).' ';
+      }
+      elseif (substr($_POST[$i],0,3) == 'bad'){
+        $_SESSION['s'.substr($_POST[$i],3,2)]--;
+        //echo '-: '.substr($_POST[$i],3,2).' ';
+      }
+    }
   }
 ?>
