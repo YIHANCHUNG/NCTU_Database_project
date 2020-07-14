@@ -40,7 +40,8 @@
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-teal">About This Website</h1>
       <p>This is a website with <a href="https://www.kaggle.com/datasnaek/youtube-new" target="_blank">youtube dataset</a>
-      , including treading youtube videos in 2018 and their properties.</p>
+      , including treading youtube videos in 2018 and their properties.
+      <br>The current features are <b>Search</b>, <b>Update</b>, <b>Insert</b>, <b>delete</b> and <b>Recommend</b>.</p>
     </div>
     <!--<div class="w3-third w3-container">
       <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
