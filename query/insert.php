@@ -9,7 +9,6 @@
     $password = "";
     $db = "youtube_db";
     $connection = mysqli_connect($servername, $username, $password, $db) or die("Error " . mysqli_error($connection));
-    //echo "Connected". "<br>"
 
 	if(isset($_POST['insert']))
 	{
@@ -17,7 +16,7 @@
         $trending_date = $_POST['trending_date'];
         $title = $_POST['title']; 
         $channel_title = $_POST['channel_title'];
-        $category = $_POST['category'];
+        $category_id = $_POST['category'];
         $publish_time = $_POST['publish_time'];
         $tags = $_POST['tags'];
         $views = $_POST['views'];
@@ -31,7 +30,7 @@
         $description = $_POST['description'];
 		
 		$sql = "INSERT INTO basic (video_id, title, channel_title, publish_time) VALUES ('$video_id', '$title', '$channel_title', '$publish_time'); 
-		INSERT INTO detail (video_id, category_id, tags, thumbnail_link, description) VALUES ('$video_id', category_id, 'tags', 'thumbnail_link', 'description');
+		INSERT INTO detail (video_id, category_id, tags, thumbnail_link, description) VALUES ('$video_id', $category_id, '$tags', '$thumbnail_link', '$description');
 		INSERT INTO property (video_id, comments_disabled, ratings_disabled, video_error_or_removed) VALUES ('$video_id', $comments_disabled, $ratings_disabled, $video_error_or_removed);
 		INSERT INTO statistic (video_id, trending_date, views, likes, dislikes, comment_count) VALUES ('$video_id', '$trending_date', $views, $likes, $dislikes, $comment_count)";
 		

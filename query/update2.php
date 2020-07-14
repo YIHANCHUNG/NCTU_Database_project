@@ -12,6 +12,8 @@
 
 	if(isset($_POST['update']))
 	{
+		if($_POST['video_id'] != "") 
+		{
 		$video_id = $_POST['video_id'];
         $trending_date = $_POST['trending_date'];
         $title = $_POST['title']; 
@@ -44,6 +46,11 @@
 		else
 		{
 			echo "Something wrong! Try again!";
+		}
+		}
+		else 
+		{
+			echo "Nothing Update";
 		}
 	}
 ?>
