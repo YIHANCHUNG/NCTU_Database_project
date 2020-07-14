@@ -10,6 +10,10 @@
     $db = "youtube_db";
     $connection = mysqli_connect($servername, $username, $password, $db) or die("Error " . mysqli_error($connection));
 
+
+    if($_POST['trending_date']!="" && $_POST['title']!="" && $_POST['channel_title']!="" && $_POST['publish_time']!="" &&  $_POST['views']!="" && $_POST['likes']!="" && $_POST['dislikes']!="" && $_POST['comment_count']!="" && $_POST['comments_disabled']!="" && $_POST['ratings_disabled']!="" && $_POST['video_error_or_removed']!="" &&
+	   is_numeric($_POST['views']) && is_numeric($_POST['likes']) && is_numeric($_POST['dislikes']) && is_numeric($_POST['comment_count']) && is_numeric($_POST['comments_disabled']) && is_numeric($_POST['ratings_disabled']) && is_numeric($_POST['video_error_or_removed']))
+	{
 	if(isset($_POST['update']))
 	{
 		if($_POST['video_id'] != "") 
@@ -52,6 +56,11 @@
 		{
 			echo "Nothing Update";
 		}
+	}
+	}
+	else 
+	{
+		echo "You may miss something or wrong input! Try again!";
 	}
 ?>
 </div>

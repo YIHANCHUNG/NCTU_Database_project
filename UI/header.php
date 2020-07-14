@@ -28,18 +28,23 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 #reset:link{
   text-decoration: none;
 }
+.goodbad {
+  border:2px solid lightgray;
+  outline:none;
+}
+
 
 </style>
-<body><!--
+<body>
+  <!-- jQuery
 	<head>
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>  -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head> -->
 	<div class="w3-top">
   	<div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="index.php" class="w3-bar-item w3-button w3-theme-l1">home</a>
-    <a href="index2.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Search</a>
+    <a href="index-search.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Search</a>
     <a href="index-update.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Update</a>
     <a href="index-insert.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Insert</a>
     <a href="index-delete.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">delete</a>

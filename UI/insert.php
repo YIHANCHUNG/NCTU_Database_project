@@ -10,6 +10,9 @@
     $db = "youtube_db";
     $connection = mysqli_connect($servername, $username, $password, $db) or die("Error " . mysqli_error($connection));
 
+    if($_POST['video_id']!="" && $_POST['trending_date']!="" && $_POST['title']!="" && $_POST['channel_title']!="" && $_POST['publish_time']!="" &&  $_POST['views']!="" && $_POST['likes']!="" && $_POST['dislikes']!="" && $_POST['comment_count']!="" &&
+	   is_numeric($_POST['views']) && is_numeric($_POST['likes']) && is_numeric($_POST['dislikes']) && is_numeric($_POST['comment_count']))
+	{
 	if(isset($_POST['insert']))
 	{
 		$video_id = substr($_POST['video_id'], -11);
@@ -43,6 +46,11 @@
 		{
 			echo "Something wrong! Try again!";
 		}
+	}
+	}
+	else 
+	{
+		echo "You may miss something or wrong input! Try again!";
 	}
 ?>
 </div>

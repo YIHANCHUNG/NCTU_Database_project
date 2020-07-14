@@ -59,8 +59,8 @@
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-teal">Members</h1>
-      <p>The group members are 0716301劉裕源、0716059巫奇翰、0716005鍾易翰、0716113韓明洋.
-      <br>Visit our <a href="https://github.com/YIHANCHUNG/NCTU_Database_project" target="_blank">github.</a></p>
+      <p>The group members are 0716301劉育源、0716059巫奇翰、0716005鍾易翰、0716113韓明洋.
+      <br>Visit our <a href="https://github.com/YIHANCHUNG/NCTU_Database_project" target="_blank">github</a>.</p>
     </div>
   </div>
 
