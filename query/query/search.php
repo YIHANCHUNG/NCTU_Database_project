@@ -28,15 +28,15 @@
 		
 		if($category == 0) {
 			if(count($tag) > 1) {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.tags, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    } else {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.tags, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    }
 		} else {
 			if(count($tag) > 1) {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.tags, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    } else {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.tags, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    }
 		}
 		
@@ -44,117 +44,138 @@
 		$queryResult = mysqli_num_rows($result);
 		if($queryResult > 0)
 		{
+			echo "<table border='1px' cellpadding='5px' cellspacing='0px'>";
+			echo "<tr>";
+				echo "<td>video id</td>";
+				echo "<td>title</td>";
+				echo "<td>channel title</td>";
+				echo "<td>publish time</td>";
+				echo "<td>category</td>";
+				echo "<td>trending date</td>";
+				echo "<td>views</td>";
+				echo "<td>likes</td>";
+				echo "<td>dislikes</td>";
+				echo "<td>comment count</td>";
+				echo "<td>video link</td>";
+			echo "</tr>";
 			while($row = mysqli_fetch_assoc($result))
 			{
-				echo $row['video_id']." ";
-				echo $row['title']." ";
-				echo $row['channel_title']." ";
-				echo $row['publish_time']." ";
-				echo $row['tags']." ";
+				echo "<tr>";
+				echo "<td>".$row['video_id']."</td>";
+				echo "<td>".$row['title']."</td>";
+				echo "<td>".$row['channel_title']."</td>";
+				echo "<td>".$row['publish_time']."</td>";
+				echo "<td>";
 				switch($row['category_id']) {
 					case 1:
-					    echo "Film & Animation"." ";
+					    echo "Film & Animation";
 					    break;
 					case 2:
-					    echo "Autos & Vehicles"." ";
+					    echo "Autos & Vehicles";
 					    break;
 					case 10:
-					    echo "Music"." ";
+					    echo "Music";
 					    break;
 					case 15:
-					    echo "Pets & Animals"." ";
+					    echo "Pets & Animals";
 					    break;
 					case 17:
-					    echo "Sports"." ";
+					    echo "Sports";
 					    break;
 					case 18:
-					    echo "Short Movies"." ";
+					    echo "Short Movies";
 					    break;
 					case 19:
-					    echo "Travel & Events"." ";
+					    echo "Travel & Events";
 					    break;
 					case 20:
-					    echo "Gaming"." ";
+					    echo "Gaming";
 					    break;
 					case 21:
-					    echo "Videoblogging"." ";
+					    echo "Videoblogging";
 					    break;
 					case 22:
-					    echo "People & Blogs"." ";
+					    echo "People & Blogs";
 					    break;
 					case 23:
-					    echo "Comedy"." ";
+					    echo "Comedy";
 					    break;
 					case 24:
-					    echo "Entertainment"." ";
+					    echo "Entertainment";
 					    break;
 					case 25:
-					    echo "News & Politics"." ";
+					    echo "News & Politics";
 					    break;
 					case 26:
-					    echo "Howto & Style"." ";
+					    echo "Howto & Style";
 					    break;
 					case 27:
-					    echo "Education"." ";
+					    echo "Education";
 					    break;
 					case 28:
-					    echo "Science & Technology"." ";
+					    echo "Science & Technology";
 					    break;
 					case 29:
-					    echo "Nonprofits & Activism"." ";
+					    echo "Nonprofits & Activism";
 					    break;
 					case 30:
-					    echo "Movies"." ";
+					    echo "Movies";
 					    break;
 					case 31:
-					    echo "Anime/Animation"." ";
+					    echo "Anime/Animation";
 					    break;
 					case 32:
-					    echo "Action/Adventure"." ";
+					    echo "Action/Adventure";
 					    break;
 					case 33:
-					    echo "Classics"." ";
+					    echo "Classics";
 					    break;
 					case 34:
-					    echo "Comedy"." ";
+					    echo "Comedy";
 					    break;
 					case 35:
-					    echo "Documentary"." ";
+					    echo "Documentary";
 					    break;
 					case 36:
-					    echo "Drama"." ";
+					    echo "Drama";
 					    break;
 					case 37:
-					    echo "Family"." ";
+					    echo "Family";
 					    break;
 					case 38:
-					    echo "Foreign"." ";
+					    echo "Foreign";
 					    break;
 					case 39:
-					    echo "Horror"." ";
+					    echo "Horror";
 					    break;
 					case 40:
-					    echo "Sci-Fi/Fantasy"." ";
+					    echo "Sci-Fi/Fantasy";
 					    break;
 					case 41:
-					    echo "Thriller"." ";
+					    echo "Thriller";
 					    break;
 					case 42:
-					    echo "Shorts"." ";
+					    echo "Shorts";
 					    break;
 					case 43:
-					    echo "Shows"." ";
+					    echo "Shows";
 					    break;
 					case 44:
-					    echo "Trailers"." ";
+					    echo "Trailers";
 					    break;	
 				}
-				echo $row['trending_date']." ";
-				echo $row['views']." ";
-                echo $row['likes']." ";
-				echo $row['dislikes']." ";
-				echo "<a href='https://www.youtube.com/watch?v=".$row['video_id']."' target='_blank'>access video</a><br>";
+				echo "</td>";
+				echo "<td>".$row['trending_date']."</td>";
+				echo "<td>".$row['views']."</td>";
+                echo "<td>".$row['likes']."</td>";
+				echo "<td>".$row['dislikes']."</td>";
+				echo "<td>".$row['comment_count']."</td>";
+				echo "<td>";
+				echo "<a href='https://www.youtube.com/watch?v=".$row['video_id']."' target='_blank'>access video</a>";
+				echo "</td>";
+				echo "</tr>";
 			}
+			echo "</table>";
 		}
 		else
 		{
