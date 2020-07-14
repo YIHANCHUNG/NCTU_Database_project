@@ -1,5 +1,11 @@
 # NCTU_Database_project
 
+Folder explaination
+NCTU_Database_project/Data_Import_SQL/ :query that create table...
+NCTU_Database_project/query : Select, Update...basic query feature. ./query : more Exception Handling
+NCTU_Database_project/UI : whole final project
+
+
 How to make the website work on you computer?
 
 1.use XAMPP and activate Apache, MySQL
@@ -14,6 +20,7 @@ How to make the website work on you computer?
 5.type 'localhost/UI' in your browser
 
 6.done and it should be work !!! in theory.
+
 
 How to use ngrok?
 
