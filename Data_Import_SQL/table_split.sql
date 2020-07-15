@@ -12,7 +12,7 @@ create table detail(
     tags text,
     thumbnail_link text,
     description text,
-    foreign key (video_id) references basic(video_id)
+    foreign key (video_id) references basic(video_id) on delete cascade on update cascade
 );
 
 create table statistic(
@@ -23,7 +23,7 @@ create table statistic(
     dislikes int NOT NULL,
     comment_count int NOT NULL,
     primary key (video_id,trending_date),
-    foreign key (video_id) references basic(video_id)
+    foreign key (video_id) references basic(video_id) on delete cascade on update cascade
 );
 
 create table property(
@@ -31,7 +31,7 @@ create table property(
     comments_disabled boolean,
     ratings_disabled boolean,
     video_error_or_removed boolean,
-    foreign key (video_id) references basic(video_id)
+    foreign key (video_id) references basic(video_id) on delete cascade on update cascade
 );
 
 
