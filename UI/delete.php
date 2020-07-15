@@ -12,7 +12,7 @@
 
 	if(isset($_POST['delete']))
 	{
-		$video_id = substr($_POST['keyword'], -11);
+		$video_id = mysqli_real_escape_string($connection, substr($_POST['keyword'], -11));
 		
 		$sql = "DELETE FROM detail WHERE video_id = '$video_id';
                 DELETE FROM property WHERE video_id = '$video_id';
