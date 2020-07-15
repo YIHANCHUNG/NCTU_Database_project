@@ -16,8 +16,8 @@
 	    {	
 			$keyword = mysqli_real_escape_string($connection, substr($_POST['keyword'], -11));
 			$year = substr($_POST['year'], -2);
-			$date = $_POST['date']
-			$month = $_POST['month']
+			$date = $_POST['date'];
+			$month = $_POST['month'];
 			$tmp = $year.".".$date.".".$month;
 			$time = mysqli_real_escape_string($connection, $tmp);
 		    $sql = "SELECT b.video_id, trending_date, title, channel_title, category_id, publish_time, tags, views, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, video_error_or_removed, description

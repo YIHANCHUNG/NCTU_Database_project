@@ -15,7 +15,7 @@
 		<input type="text" name="title" placeholder="Insert title"><br>
 		channel title:
 		<input type="text" name="channel_title" placeholder="Insert channel title"><br>
-		category:<select name="category">
+		category:<select name="category_id">
 		<option value="1" selected> "Film & Animation" </option> 
 		<option value="2"> "Autos & Vehicles" </option> 
 		<option value="10"> "Music" </option>  
