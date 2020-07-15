@@ -10,26 +10,30 @@
     $db = "youtube_db";
     $connection = mysqli_connect($servername, $username, $password, $db) or die("Error " . mysqli_error($connection));
 
+
+    if($_POST['trending_date']!="" && $_POST['title']!="" && $_POST['channel_title']!="" && $_POST['publish_time']!="" &&  $_POST['views']!="" && $_POST['likes']!="" && $_POST['dislikes']!="" && $_POST['comment_count']!="" && $_POST['comments_disabled']!="" && $_POST['ratings_disabled']!="" && $_POST['video_error_or_removed']!="" &&
+	   is_numeric($_POST['views']) && is_numeric($_POST['likes']) && is_numeric($_POST['dislikes']) && is_numeric($_POST['comment_count']) && is_numeric($_POST['comments_disabled']) && is_numeric($_POST['ratings_disabled']) && is_numeric($_POST['video_error_or_removed']))
+	{
 	if(isset($_POST['update']))
 	{
 		if($_POST['video_id'] != "") 
 		{
-		$video_id = $_POST['video_id'];
-        $trending_date = $_POST['trending_date'];
-        $title = $_POST['title']; 
-        $channel_title = $_POST['channel_title'];
+		$video_id = mysqli_real_escape_string($connection, $_POST['video_id']);
+        $trending_date = mysqli_real_escape_string($connection, $_POST['trending_date']);
+        $title = mysqli_real_escape_string($connection, $_POST['title']); 
+        $channel_title = mysqli_real_escape_string($connection, $_POST['channel_title']);
         $category_id = $_POST['category_id'];
-        $publish_time = $_POST['publish_time'];
-        $tags = $_POST['tags'];
+        $publish_time = mysqli_real_escape_string($connection, $_POST['publish_time']);
+        $tags = mysqli_real_escape_string($connection, $_POST['tags']);
         $views = $_POST['views'];
         $likes = $_POST['likes'];
         $dislikes = $_POST['dislikes'];
         $comment_count = $_POST['comment_count'];
-        $thumbnail_link = $_POST['thumbnail_link'];
+        $thumbnail_link = mysqli_real_escape_string($connection, $_POST['thumbnail_link']);
         $comments_disabled = $_POST['comments_disabled'];
         $ratings_disabled = $_POST['ratings_disabled'];
         $video_error_or_removed = $_POST['video_error_or_removed'];
-        $description = $_POST['description'];
+        $description = mysqli_real_escape_string($connection, $_POST['description']);
 		
 		$sql = "UPDATE basic, detail, statistic, property 
                 SET basic.title='$title', basic.channel_title='$channel_title', basic.publish_time='$publish_time', 
@@ -52,6 +56,11 @@
 		{
 			echo "Nothing Update";
 		}
+	}
+	}
+	else 
+	{
+		echo "You may miss something or wrong input! Try again!";
 	}
 ?>
 </div>

@@ -9,54 +9,33 @@
     $password = "";
     $db = "youtube_db";
     $connection = mysqli_connect($servername, $username, $password, $db) or die("Error " . mysqli_error($connection));
-
+	
+	if(is_numeric($_POST['view_lower']) && is_numeric($_POST['view_upper']) && is_numeric($_POST['like_lower']) && is_numeric($_POST['like_upper']) && is_numeric($_POST['dislike_lower']) && is_numeric($_POST['dislike_upper'])) 
+	{	   
 	if(isset($_POST['search']))
 	{
 		$keyword = mysqli_real_escape_string($connection, $_POST['keyword']);
 		$tag = $_POST['tag'];
 		$category = $_POST['category'];
-		if($_POST['view_lower'] != '') {
-		    $view_lower = $_POST['view_lower'];
-		} else {
-			$view_lower = 0;
-		}
-		if($_POST['view_upper'] != '') {
-		    $view_upper = $_POST['view_upper'];
-		} else {
-			$view_upper = 2147483647;
-		}
-		if($_POST['like_lower'] != '') {
-		    $like_lower = $_POST['like_lower'];
-		} else {
-			$like_lower = 0;
-		}
-		if($_POST['like_upper'] != '') {
-		    $like_upper = $_POST['like_upper'];
-		} else {
-			$like_upper = 2147483647;
-		}
-		if($_POST['dislike_lower'] != '') {
-		    $dislike_lower = $_POST['dislike_lower'];
-		} else {
-			$dislike_lower = 0;
-		}
-		if($_POST['dislike_upper'] != '') {
-		    $dislike_upper = $_POST['dislike_upper'];
-		} else {
-			$dislike_upper = 2147483647;
-		}
+		$view_lower = $_POST['view_lower'];
+        $view_upper = $_POST['view_upper'];
+		$like_lower = $_POST['like_lower'];
+        $like_upper = $_POST['like_upper'];
+        $dislike_lower = $_POST['dislike_lower'];
+        $dislike_upper = $_POST['dislike_upper'];
+
 		
 		if($category == 0) {
 			if(count($tag) > 1) {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id, d.thumbnail_link FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    } else {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id, d.thumbnail_link FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%')) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    }
 		} else {
 			if(count($tag) > 1) {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id, d.thumbnail_link FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%' OR d.tags LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    } else {
-			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
+			    $sql = "SELECT r.*, s.trending_date, s.views, s.likes, s.dislikes, s.comment_count FROM (SELECT * FROM statistic WHERE views BETWEEN $view_lower AND $view_upper AND likes BETWEEN $like_lower AND $like_upper AND dislikes BETWEEN $dislike_lower AND $dislike_upper) as s, (SELECT b.*, d.category_id, d.thumbnail_link FROM basic as b, detail as d WHERE b.video_id = d.video_id AND (b.title LIKE '%$keyword%' OR b.channel_title LIKE '%$keyword%') AND d.category_id = $category) as r WHERE r.video_id = s.video_id LIMIT 50";
 		    }
 		}
 		
@@ -66,12 +45,12 @@
 		{
 			echo "<table border='1px' cellpadding='5px' cellspacing='0px'>";
 			echo "<tr>";
-				echo "<td>video id</td>";
+				echo "<td>thumbnail</td>";
 				echo "<td>title</td>";
+				echo "<td>trending date</td>";
 				echo "<td>channel title</td>";
 				echo "<td>publish time</td>";
 				echo "<td>category</td>";
-				echo "<td>trending date</td>";
 				echo "<td>views</td>";
 				echo "<td>likes</td>";
 				echo "<td>dislikes</td>";
@@ -81,8 +60,11 @@
 			while($row = mysqli_fetch_assoc($result))
 			{
 				echo "<tr>";
-				echo "<td>".$row['video_id']."</td>";
+				echo "<td>";
+				echo "<img src='".$row['thumbnail_link']."'>";
+				echo "</td>";
 				echo "<td>".$row['title']."</td>";
+				echo "<td>".$row['trending_date']."</td>";
 				echo "<td>".$row['channel_title']."</td>";
 				echo "<td>".$row['publish_time']."</td>";
 				echo "<td>";
@@ -185,7 +167,6 @@
 					    break;	
 				}
 				echo "</td>";
-				echo "<td>".$row['trending_date']."</td>";
 				echo "<td>".$row['views']."</td>";
                 echo "<td>".$row['likes']."</td>";
 				echo "<td>".$row['dislikes']."</td>";
@@ -201,6 +182,11 @@
 		{
 			echo "There are no results matching your search!";
 		}
+	}
+	}
+	else
+	{
+		echo "Wrong input! Try again!";
 	}
 ?>
 </div>

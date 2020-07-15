@@ -6,9 +6,8 @@
 <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
 		<form action="search.php" method="POST">
-		Search:
 		<input type="text" name="keyword" placeholder="Insert keyword">
-		<input type="checkbox" name="tag[]" value="1">tag
+		<input type="checkbox" name="tag[]" value="1">tag<br>
 		<div style="display:none">
 		<input type="checkbox" name="tag[]" value="2" checked>
 		</div>
@@ -54,21 +53,21 @@
 			</p>
 			<p>
 		    view:
-		    <input type="text" name="view_lower" placeholder="lower">
+		    <input type="text" name="view_lower" value="0">
 		    ~
-		    <input type="text" name="view_upper" placeholder="upper">
+		    <input type="text" name="view_upper" value="2147483647">
 			</p>
 			<p>
 		    like:
-		    <input type="text" name="like_lower" placeholder="lower">
+		    <input type="text" name="like_lower" value="0">
 		    ~
-		    <input type="text" name="like_upper" placeholder="upper">
+		    <input type="text" name="like_upper" value="2147483647">
 			</p>
 			<p>
 		    dislike:
-		    <input type="text" name="dislike_lower" placeholder="lower">
+		    <input type="text" name="dislike_lower" value="0">
 		    ~
-		    <input type="text" name="dislike_upper" placeholder="upper">
+		    <input type="text" name="dislike_upper" value="2147483647">
 			</p>
 	  	</details>
 		</form>
